@@ -4,34 +4,55 @@ using System.Threading.Tasks;
 
 namespace Sample_Server_Core
 {
+    // 1. Full Memory Barrier (ASM MFENCE, C# Thread.MemoryBarrier) : Store/Load 둘 다 방지
+    // 2. Store Memory Barrier (ASM SFENCE) : Store만 방지
+    // 3. Load Memory Barrier (ASM LFENCE) : Load만 방지
     class Program
     {
-        static void MainThread(object state)
+        static int x = 0;
+        static int y = 0;
+        static int r1 = 0;
+        static int r2 = 0;
+
+        static void Thread_1()
         {
-            for (int i = 0; i < 5; i++)
-                Console.WriteLine("Hello Thread");
+            y = 1;
+
+            Thread.MemoryBarrier();
+
+            r1 = x;
+        }
+
+        static void Thread_2()
+        {
+            x = 1;
+
+            Thread.MemoryBarrier();
+
+            r2 = y;
         }
 
         static void Main(string[] args)
         {
-            ThreadPool.SetMinThreads(1, 1);
-            ThreadPool.SetMaxThreads(5, 5);
-
-            for (int i = 0; i < 5; i++)
+            int count = 0;
+            while(true)
             {
-                Task t = new Task(() => { while (true) { } }, TaskCreationOptions.LongRunning);
-                t.Start();
+                x = y = r1 = r2 = 0;
+
+                Task t1 = new Task(Thread_1);
+                Task t2 = new Task(Thread_2);
+
+                t1.Start();
+                t2.Start();
+
+                Task.WaitAll(t1, t2);
+
+                if (r1 == 0 && r2 == 0) break;
+
+                count++;
             }
 
-            ThreadPool.QueueUserWorkItem(MainThread);
-            //t.Name = "Test Thread";
-            //t.IsBackground = true;
-            //t.Start();
-
-            //Console.WriteLine("Hello World!");
-
-            //t.Join();
-            //Console.WriteLine("Hello World!");
+            Console.WriteLine($"Count = {count}");
         }
     }
 }
