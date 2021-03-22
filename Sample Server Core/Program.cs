@@ -6,40 +6,38 @@ namespace Sample_Server_Core
 {
     class Program
     {
-        static int number = 0;
-        static Mutex _lock = new Mutex();
-
-        static void Thread_1()
-        {
-            for (int i = 0; i < 10000; i++)
-            {
-                _lock.WaitOne();
-                number++;
-                _lock.ReleaseMutex();
-            }
-        }
-
-        static void Thread_2()
-        {
-            for (int i = 0; i < 10000; i++)
-            {
-                _lock.WaitOne();
-                number--;
-                _lock.ReleaseMutex();
-            }
-        }
-
+        static volatile int count = 0;
+        static Lock _lock = new Lock();
         static void Main(string[] args)
         {
-            Task t1 = new Task(Thread_1);
-            Task t2 = new Task(Thread_2);
+            Task t1 = new Task(delegate ()
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    _lock.WriteLock();
+                    _lock.WriteLock();
+                    count++;
+                    _lock.WriteUnLock();
+                    _lock.WriteUnLock();
+                }
+            });
+
+            Task t2 = new Task(delegate ()
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    _lock.WriteLock();
+                    count--;
+                    _lock.WriteUnLock();
+                }
+            });
 
             t1.Start();
             t2.Start();
 
-            Task.WaitAll();
+            Task.WaitAll(t1, t2);
 
-            Console.WriteLine(number);
+            Console.WriteLine(count);
         }
     }
 }
