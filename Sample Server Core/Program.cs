@@ -4,37 +4,32 @@ using System.Threading.Tasks;
 
 namespace Sample_Server_Core
 {
-    class SpinLock
+    class Lock
     {
-        volatile int _locked = 0; 
+        // 속도 자체가 느리기 때문에 간단한 반복작업에 부적합.
+        // AutoResetEvent _available = new AutoResetEvent(true);
+        ManualResetEvent _available = new ManualResetEvent(true);
 
         public void Acquire()
         {
-            while (true)
-            {
-                int expected = 0;
-                int desired = 1;
-                if(Interlocked.CompareExchange(ref _locked, desired, expected) == expected) break;
-
-                // Thread.Sleep(1); // N ms 만큼 대기
-                // Thread.Sleep(0); // 우선순위에 따라서 양보
-                Thread.Yield();  // 실행 가능한 쓰레드에게 양보
-            }
+            _available.WaitOne(); // Auto에서는 자동으로 false로 변환
+            _available.Reset(); // false로 변환 다만 Manual에서 진행 시 단계가 2단계가 되기 때문에 문제 발생 가능
+                                // 즉 하나씩 이동 시에는 Manual이 불필요하지만 다량의 쓰레드가 들어와야할 경우 필요
         }
 
         public void Release()
         {
-            _locked = 0;
+            _available.Set(); // true로 변환
         }
     }
     class Program
     {
         static int number = 0;
-        static SpinLock _lock = new SpinLock();
+        static Lock _lock = new Lock();
 
         static void Thread_1()
         {
-            for (int i = 0; i < 1000000000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 _lock.Acquire();
                 number++;
@@ -44,7 +39,7 @@ namespace Sample_Server_Core
 
         static void Thread_2()
         {
-            for (int i = 0; i < 1000000000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 _lock.Acquire();
                 number--;
