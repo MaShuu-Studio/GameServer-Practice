@@ -12,14 +12,13 @@ namespace Sample_Server_Core
         {
             while (true)
             {
-                // lock이 풀리기까지 대기
-                /*
-                int origin = Interlocked.Exchange(ref _locked, 1);
-                if (origin == 0) break;
-                */
                 int expected = 0;
                 int desired = 1;
                 if(Interlocked.CompareExchange(ref _locked, desired, expected) == expected) break;
+
+                // Thread.Sleep(1); // N ms 만큼 대기
+                // Thread.Sleep(0); // 우선순위에 따라서 양보
+                Thread.Yield();  // 실행 가능한 쓰레드에게 양보
             }
         }
 
