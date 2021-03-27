@@ -1,28 +1,57 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.Net;
+using System.Text;
 
 namespace Sample_Server_Core
 {
     class Program
     {
-        static ThreadLocal<string> ThreadName = new ThreadLocal<string>(() => { return $"My name is {Thread.CurrentThread.ManagedThreadId}"; });
-        // null일 때 입력해준 function이 작동
-        // 만약 함수 없이 메서드에 Value를 직접 변동시켜준다면 같은 쓰레드가 호출되더라도 다시 변경시키는 비효율적인 방식이 됨.
-
-        static void WhoAmI()
-        {
-            bool repeat = ThreadName.IsValueCreated;
-            if (repeat) 
-                Console.WriteLine(ThreadName.Value + " - repeat");
-            else
-                Console.WriteLine(ThreadName.Value);
-        }
+        const int PORT_NUMBER = 7777;
         static void Main(string[] args)
         {
-            ThreadPool.SetMinThreads(1, 1);
-            ThreadPool.SetMaxThreads(3, 3);
-            Parallel.Invoke(WhoAmI, WhoAmI, WhoAmI, WhoAmI, WhoAmI, WhoAmI, WhoAmI);
+            // DNS 활용
+            string host = Dns.GetHostName();
+            IPHostEntry ipHost = Dns.GetHostEntry(host);
+            IPAddress ipAddr = ipHost.AddressList[0];
+            IPEndPoint endPoint = new IPEndPoint(ipAddr, PORT_NUMBER);
+
+            // 리스너 생성
+            Socket listenSocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+            // 바인딩
+            listenSocket.Bind(endPoint);
+
+            // 리스너 리슨 - 최대 대기자 수 설정
+            listenSocket.Listen(10);
+
+            // 무한하게 리슨
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Listening...");
+
+                    Socket clientSocket = listenSocket.Accept(); // Socket Return. Blocking 함수라서 클라이언트가 올때까지 대기함.
+
+                    byte[] recvBuff = new byte[1024];
+                    int recvBytes = clientSocket.Receive(recvBuff); // 받은 버퍼의 크기
+                    string recvData = Encoding.UTF8.GetString(recvBuff, 0, recvBytes); // 시작지점부터 받은 크기까지
+                    Console.WriteLine($"[From Client] {recvData}");
+
+                    byte[] sendBuff = Encoding.UTF8.GetBytes("Welcome!");
+                    clientSocket.Send(sendBuff);
+
+                    clientSocket.Shutdown(SocketShutdown.Both); // 연결해제 알림
+                    clientSocket.Close();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("[Error]" + e.ToString());
+                }
+            }
         }
     }
 }
