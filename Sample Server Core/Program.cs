@@ -16,16 +16,18 @@ namespace Sample_Server_Core
         {
             try
             {
-                byte[] recvBuff = new byte[1024];
-                int recvBytes = clientSocket.Receive(recvBuff); // 받은 버퍼의 크기
-                string recvData = Encoding.UTF8.GetString(recvBuff, 0, recvBytes); // 시작지점부터 받은 크기까지
-                Console.WriteLine($"[From Client] {recvData}");
+                Session session = new Session();
+                session.Init(clientSocket);
 
                 byte[] sendBuff = Encoding.UTF8.GetBytes("Welcome!");
-                clientSocket.Send(sendBuff);
+                session.Send(sendBuff);
 
-                clientSocket.Shutdown(SocketShutdown.Both); // 연결해제 알림
-                clientSocket.Close();
+                Thread.Sleep(1000);
+
+                session.Disconnect();
+                session.Disconnect();
+
+
             }
             catch (Exception e)
             {

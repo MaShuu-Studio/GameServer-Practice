@@ -25,10 +25,13 @@ namespace Sample_Server_Core
 
             // 초기화 하면서 등록. 요청이 들어오면 Callback 방식으로 OnAccpetCompleted 작동.
             // RegisterAccept를 실행했을 때 바로 요청이 들어왔다면 pending이 false가 되어 작동
-            // 그게 아니라면 pending == false 부분은 넘어가겠지만 후에 Callback으로 Completed에 넣어둔 OnAcceptCompleted 작동
-            SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-            args.Completed += new EventHandler<SocketAsyncEventArgs>(OnAcceptCompleted);
-            RegisterAccept(args);
+            // 그게 아니라면 pending == false 부분은 넘어가겠지만 후에 Callback으로 Completed에 넣어둔 OnAcceptCompleted 작동\
+            for (int i = 0; i < 5; i++) // 다수의 리스너 사용
+            {
+                SocketAsyncEventArgs args = new SocketAsyncEventArgs();
+                args.Completed += new EventHandler<SocketAsyncEventArgs>(OnAcceptCompleted);
+                RegisterAccept(args);
+            }
         }
 
         void RegisterAccept(SocketAsyncEventArgs args)
@@ -43,6 +46,7 @@ namespace Sample_Server_Core
         {
             if (args.SocketError == SocketError.Success) // 성공
             {
+                // 다른 쓰레드에서 작동되는 부분. 데이터 관리에 유의해야 함
                 _onAcceptHandler.Invoke(args.AcceptSocket); // args.AcceptSocket은 말 그대로 Accept된 Socket이다.
             }
             else
