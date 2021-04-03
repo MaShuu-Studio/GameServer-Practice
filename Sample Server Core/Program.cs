@@ -25,7 +25,6 @@ namespace Sample_Server_Core
                 Thread.Sleep(1000);
 
                 session.Disconnect();
-                session.Disconnect();
 
 
             }
