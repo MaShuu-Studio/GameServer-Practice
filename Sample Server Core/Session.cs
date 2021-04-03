@@ -1,21 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
 namespace Sample_Server_Core
 {
-    class Session
+    abstract class Session
     {
         Socket _socket;
         int _disconnect = 0;
+
+        SocketAsyncEventArgs _recvArgs = new SocketAsyncEventArgs();
 
         SocketAsyncEventArgs _sendArgs = new SocketAsyncEventArgs();
         List<ArraySegment<byte>> _pendingList = new List<ArraySegment<byte>>();
         Queue<byte[]> _sendQueue = new Queue<byte[]>();
 
-        SocketAsyncEventArgs _recvArgs = new SocketAsyncEventArgs();
+        public abstract void OnConnected(EndPoint endPoint);
+
+        public abstract void OnRecv(ArraySegment<byte> buffer);
+        public abstract void OnSend(int numOfBytes);
+        public abstract void OnDisconnected(EndPoint endPoint);
 
         object _lock = new object();
         public void Init(Socket socket)
@@ -47,6 +54,7 @@ namespace Sample_Server_Core
         {
             if (Interlocked.Exchange(ref _disconnect, 1) == 1) return;
 
+            OnDisconnected(_socket.RemoteEndPoint);
             _socket.Shutdown(SocketShutdown.Both); // 연결해제 알림
             _socket.Close();
         }
@@ -77,7 +85,7 @@ namespace Sample_Server_Core
                         _sendArgs.BufferList = null;
                         _pendingList.Clear();
 
-                        Console.WriteLine($"Transferred bytes: {_sendArgs.BytesTransferred}");
+                        OnSend(_sendArgs.BytesTransferred);
 
                         if (_sendQueue.Count > 0) // 큐에 내용이 아직 남아있다면
                             RegisterSend(); // 마저 털어냄
@@ -107,8 +115,7 @@ namespace Sample_Server_Core
             {
                 try
                 {
-                    string recvData = Encoding.UTF8.GetString(args.Buffer, args.Offset, args.BytesTransferred);
-                    Console.WriteLine($"[From Client] {recvData}");
+                    OnRecv(new ArraySegment<byte>(args.Buffer, args.Offset, args.BytesTransferred));
 
                     RegisterRecv();
                 }

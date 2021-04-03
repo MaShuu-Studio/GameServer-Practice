@@ -9,13 +9,13 @@ namespace Sample_Server_Core
     class Listener
     {
         Socket _listenSocket;
-        Action<Socket> _onAcceptHandler;
+        Func<Session> _sessionFactory;
 
-        public void init(IPEndPoint endPoint, Action<Socket> onAcceptHandler)
+        public void init(IPEndPoint endPoint, Func<Session> sessionFactory)
         {
             // 리스너 생성
             _listenSocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-            _onAcceptHandler += onAcceptHandler;
+            _sessionFactory += sessionFactory;
 
             // 바인딩
             _listenSocket.Bind(endPoint);
@@ -46,8 +46,13 @@ namespace Sample_Server_Core
         {
             if (args.SocketError == SocketError.Success) // 성공
             {
-                // 다른 쓰레드에서 작동되는 부분. 데이터 관리에 유의해야 함
-                _onAcceptHandler.Invoke(args.AcceptSocket); // args.AcceptSocket은 말 그대로 Accept된 Socket이다.
+                // Listener에서 connect가 들어가기 때문에 Seesion 의 위치 이동.
+
+                // 함수의 통일 및 리스너별 컨텐츠 세션 분리를 위해 Func<> 사용.
+                // 이후 return 된 Session Factory에 넣어 통일된 함수 사용. 실질적 작동은 Override 된 함수를 활용
+                Session session = _sessionFactory.Invoke();
+                session.Init(args.AcceptSocket);
+                session.OnConnected(args.AcceptSocket.RemoteEndPoint);
             }
             else
                 Console.WriteLine(args.SocketError.ToString());
