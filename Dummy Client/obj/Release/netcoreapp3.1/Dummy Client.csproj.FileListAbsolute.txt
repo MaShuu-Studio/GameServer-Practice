@@ -11,3 +11,6 @@ D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\Dummy Clie
 D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\Dummy Client.dll
 D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\Dummy Client.pdb
 D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\Dummy Client.genruntimeconfig.cache
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\Sample Server Core.dll
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\Sample Server Core.pdb
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\Dummy Client.csproj.CopyComplete

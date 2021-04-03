@@ -6,4 +6,8 @@
     <RootNamespace>Dummy_Client</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sample Server Core\Sample Server Core.csproj" />
+  </ItemGroup>
+
 </Project>

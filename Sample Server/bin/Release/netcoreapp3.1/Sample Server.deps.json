@@ -6,9 +6,9 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Dummy Client/1.0.0": {
+      "Sample Server/1.0.0": {
         "runtime": {
-          "Dummy Client.dll": {}
+          "Sample Server.dll": {}
         }
       },
       "Sample Server Core/1.0.0": {
@@ -19,7 +19,7 @@
     }
   },
   "libraries": {
-    "Dummy Client/1.0.0": {
+    "Sample Server/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
