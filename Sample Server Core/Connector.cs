@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sample_Server_Core
 {
-    class Connector
+    public class Connector
     {
         Func<Session> _sessionFactory;
         public void Connect(IPEndPoint endPoint, Func<Session> sessionFactory)

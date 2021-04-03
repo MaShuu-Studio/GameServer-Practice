@@ -6,4 +6,8 @@
     <RootNamespace>Sample_Server</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sample Server Core\Sample Server Core.csproj" />
+  </ItemGroup>
+
 </Project>

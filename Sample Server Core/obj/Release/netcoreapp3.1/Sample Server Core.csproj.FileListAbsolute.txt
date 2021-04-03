@@ -1,7 +1,4 @@
-D:\Users\Project\Sample Server\Sample Server Core\bin\Release\netcoreapp3.1\Sample Server Core.exe
 D:\Users\Project\Sample Server\Sample Server Core\bin\Release\netcoreapp3.1\Sample Server Core.deps.json
-D:\Users\Project\Sample Server\Sample Server Core\bin\Release\netcoreapp3.1\Sample Server Core.runtimeconfig.json
-D:\Users\Project\Sample Server\Sample Server Core\bin\Release\netcoreapp3.1\Sample Server Core.runtimeconfig.dev.json
 D:\Users\Project\Sample Server\Sample Server Core\bin\Release\netcoreapp3.1\Sample Server Core.dll
 D:\Users\Project\Sample Server\Sample Server Core\bin\Release\netcoreapp3.1\Sample Server Core.pdb
 D:\Users\Project\Sample Server\Sample Server Core\obj\Release\netcoreapp3.1\Sample Server Core.csprojAssemblyReference.cache
@@ -10,4 +7,3 @@ D:\Users\Project\Sample Server\Sample Server Core\obj\Release\netcoreapp3.1\Samp
 D:\Users\Project\Sample Server\Sample Server Core\obj\Release\netcoreapp3.1\Sample Server Core.csproj.CoreCompileInputs.cache
 D:\Users\Project\Sample Server\Sample Server Core\obj\Release\netcoreapp3.1\Sample Server Core.dll
 D:\Users\Project\Sample Server\Sample Server Core\obj\Release\netcoreapp3.1\Sample Server Core.pdb
-D:\Users\Project\Sample Server\Sample Server Core\obj\Release\netcoreapp3.1\Sample Server Core.genruntimeconfig.cache
