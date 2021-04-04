@@ -11,13 +11,28 @@ namespace Sample_Server
 {
     class GameSession : Session
     {
+        public class Knight
+        {
+            public int hp;
+            public int atk;
+        }
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"[System] OnConnected : {endPoint}");
 
             try
             {
-                byte[] sendBuff = Encoding.UTF8.GetBytes("Welcome!");
+                Knight knight = new Knight() { hp = 100, atk = 10 };
+
+                ArraySegment<byte> openSegment = SendBufferHelper.Open(4096);
+
+                byte[] buffer = BitConverter.GetBytes(knight.hp);
+                byte[] buffer2 = BitConverter.GetBytes(knight.atk);
+                Array.Copy(buffer, 0, openSegment.Array, openSegment.Offset, buffer.Length);
+                Array.Copy(buffer2, 0, openSegment.Array, openSegment.Offset + buffer.Length, buffer2.Length);
+
+                ArraySegment<byte> sendBuff = SendBufferHelper.Close(buffer.Length + buffer2.Length);
+
                 Send(sendBuff);
 
                 Thread.Sleep(1000);

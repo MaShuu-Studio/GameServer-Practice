@@ -7,14 +7,12 @@ namespace Sample_Server_Core
     public class RecvBuffer
     {
         ArraySegment<byte> _buffer;
-        int _readPos;
-        int _writePos;
+        int _readPos = 0;
+        int _writePos = 0;
 
         public RecvBuffer(int bufferSize)
         {
             _buffer = new ArraySegment<byte>(new byte[bufferSize], 0, bufferSize);
-            _readPos = _writePos = 0;
-
         }
 
         public int DataSize { get { return _writePos - _readPos; } }
