@@ -9,33 +9,34 @@ using Sample_Server_Core;
 
 namespace Sample_Server
 {
-    class GameSession : Session
+    class GameSession : PacketSession
     {
-        public class Knight
+        public class Packet
         {
-            public int hp;
-            public int atk;
+            public ushort size; // 사이즈를 통해 모든 패킷이 왔는지 확인함.
+            public ushort packetId; //어떠한 패킷인지 확인함.
         }
+
         public override void OnConnected(EndPoint endPoint)
         {
             Console.WriteLine($"[System] OnConnected : {endPoint}");
 
             try
             {
-                Knight knight = new Knight() { hp = 100, atk = 10 };
+                //Packet packet = new Packet() { size = 4, packetId = 10 };
+                //
+                //ArraySegment<byte> openSegment = SendBufferHelper.Open(4096);
+                //
+                //byte[] buffer = BitConverter.GetBytes(packet.size);
+                //byte[] buffer2 = BitConverter.GetBytes(packet.packetId);
+                //Array.Copy(buffer, 0, openSegment.Array, openSegment.Offset, buffer.Length);
+                //Array.Copy(buffer2, 0, openSegment.Array, openSegment.Offset + buffer.Length, buffer2.Length);
+                //
+                //ArraySegment<byte> sendBuff = SendBufferHelper.Close(pakcet.size);
 
-                ArraySegment<byte> openSegment = SendBufferHelper.Open(4096);
+                //Send(sendBuff);
 
-                byte[] buffer = BitConverter.GetBytes(knight.hp);
-                byte[] buffer2 = BitConverter.GetBytes(knight.atk);
-                Array.Copy(buffer, 0, openSegment.Array, openSegment.Offset, buffer.Length);
-                Array.Copy(buffer2, 0, openSegment.Array, openSegment.Offset + buffer.Length, buffer2.Length);
-
-                ArraySegment<byte> sendBuff = SendBufferHelper.Close(buffer.Length + buffer2.Length);
-
-                Send(sendBuff);
-
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
 
                 Disconnect();
             }
@@ -45,23 +46,23 @@ namespace Sample_Server
             }
         }
 
+        public override void OnRecvPacket(ArraySegment<byte> buffer)
+        {
+            ushort size = BitConverter.ToUInt16(buffer.Array, buffer.Offset);
+            ushort id = BitConverter.ToUInt16(buffer.Array, buffer.Offset + 2);
+            Console.WriteLine($"[From Client] RecvPacketId: {id}, Size: {size}");
+        }
+
         public override void OnDisconnected(EndPoint endPoint)
         {
             Console.WriteLine($"[System] OnDisconnected : {endPoint}");
-        }
-
-        public override int OnRecv(ArraySegment<byte> buffer)
-        {
-            string recvData = Encoding.UTF8.GetString(buffer.Array, buffer.Offset, buffer.Count);
-            Console.WriteLine($"[From Client] {recvData}");
-
-            return buffer.Count;
         }
 
         public override void OnSend(int numOfBytes)
         {
             Console.WriteLine($"[System] Transferred bytes: {numOfBytes}");
         }
+
     }
     class Program
     {

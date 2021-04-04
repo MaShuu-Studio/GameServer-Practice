@@ -7,6 +7,37 @@ using System.Threading;
 
 namespace Sample_Server_Core
 {
+    public abstract class PacketSession : Session
+    {
+        public static readonly int HeaderSize = 2;
+        // sealed: 더이상 오버라이드 불가능.
+        // [size(2)][packetid(2)] => 먼저 사이즈가 제대로 도착했는지 확인.
+        public sealed override int OnRecv(ArraySegment<byte> buffer)
+        {
+            int processLen = 0;
+
+            while (true)
+            {
+                // 적어도 사이즈는 제대로 도착했는지 확인.
+                if (buffer.Count < HeaderSize) break;
+
+                // 패킷이 제대로 도착했는지 확인
+                ushort dataSize = BitConverter.ToUInt16(buffer.Array, buffer.Offset);
+                if (buffer.Count < dataSize) break;
+
+                // 패킷이 일단 전부 도착한 것.
+                OnRecvPacket(new ArraySegment<byte>(buffer.Array, buffer.Offset, dataSize));
+
+                processLen += dataSize; // 현재 패킷은 도착했으니 처리 진행. 버퍼도 도착한만큼 이동
+                buffer = new ArraySegment<byte>(buffer.Array, buffer.Offset + dataSize, buffer.Count - dataSize);
+            }
+            return processLen;
+        }
+
+        // 이 후 패킷의 종류에 따라 Parsing을 진행.
+        public abstract void OnRecvPacket(ArraySegment<byte> buffer);
+    }
+
     public abstract class Session
     {
         Socket _socket;
@@ -23,7 +54,6 @@ namespace Sample_Server_Core
         object _lock = new object();
 
         public abstract void OnConnected(EndPoint endPoint);
-
         public abstract int OnRecv(ArraySegment<byte> buffer);
         public abstract void OnSend(int numOfBytes);
         public abstract void OnDisconnected(EndPoint endPoint);
