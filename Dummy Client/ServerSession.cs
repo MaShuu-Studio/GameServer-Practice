@@ -8,16 +8,7 @@ using Sample_Server_Core;
 
 namespace Dummy_Client
 {
-    public abstract class Packet
-    {
-        public ushort size; // 사이즈를 통해 모든 패킷이 왔는지 확인함.
-        public ushort packetId; //어떠한 패킷인지 확인함.
-
-        public abstract ArraySegment<byte> Write();
-        public abstract void Read(ArraySegment<byte> s);
-    }
-
-    class PlayerInfoReq : Packet
+    class PlayerInfoReq
     {
         public long playerId;
         public string name;
@@ -53,11 +44,7 @@ namespace Dummy_Client
         }
 
         public List<SkillInfo> skills = new List<SkillInfo>();
-        public PlayerInfoReq()
-        {
-            packetId = (ushort)PacketID.PlayerInfoReq;
-        }
-        public override void Read(ArraySegment<byte> segment)
+        public void Read(ArraySegment<byte> segment)
         {
             ushort count = 0;
 
@@ -90,7 +77,7 @@ namespace Dummy_Client
             }
         }
 
-        public override ArraySegment<byte> Write()
+        public ArraySegment<byte> Write()
         {
             ArraySegment<byte> segment = SendBufferHelper.Open(4096);
             bool success = true;
@@ -99,7 +86,7 @@ namespace Dummy_Client
             Span<byte> s = new Span<byte>(segment.Array, segment.Offset, segment.Count);
 
             count += sizeof(ushort);
-            success &= BitConverter.TryWriteBytes(s.Slice(count, s.Length - count), this.packetId);
+            success &= BitConverter.TryWriteBytes(s.Slice(count, s.Length - count), (ushort)PacketID.PlayerInfoReq);
             count += sizeof(ushort);
             success &= BitConverter.TryWriteBytes(s.Slice(count, s.Length - count), this.playerId);
             count += sizeof(long);
@@ -128,12 +115,11 @@ namespace Dummy_Client
                 success &= skill.Write(s, ref count);
             }
 
-            this.size = count;
-            success &= BitConverter.TryWriteBytes(s, size);
+            success &= BitConverter.TryWriteBytes(s, count);
 
             if (!success) return null;
 
-            return SendBufferHelper.Close(size);
+            return SendBufferHelper.Close(count);
         }
     }
 
