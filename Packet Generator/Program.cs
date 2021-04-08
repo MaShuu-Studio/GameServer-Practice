@@ -11,13 +11,17 @@ namespace Packet_Generator
         static string packetEnums;
         static void Main(string[] args)
         {
+            string pdlPath = "../PDL.xml";
             XmlReaderSettings settings = new XmlReaderSettings()
             {
                 IgnoreComments = true,
                 IgnoreWhitespace = true
             };
 
-            using (XmlReader r = XmlReader.Create("PDL.xml", settings))
+            // argument 받아서 Path로 활용
+            if (args.Length >= 1) pdlPath = args[0];
+
+            using (XmlReader r = XmlReader.Create(pdlPath, settings))
             {
                 r.MoveToContent();
                 while(r.Read())

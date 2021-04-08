@@ -11,3 +11,9 @@ D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet
 D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet Generator.pdb
 D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet Generator.genruntimeconfig.cache
 D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet Generator.csprojAssemblyReference.cache
+D:\Users\Project\Sample Server\Packet Generator\bin\netcoreapp3.1\Packet Generator.exe
+D:\Users\Project\Sample Server\Packet Generator\bin\netcoreapp3.1\Packet Generator.deps.json
+D:\Users\Project\Sample Server\Packet Generator\bin\netcoreapp3.1\Packet Generator.runtimeconfig.json
+D:\Users\Project\Sample Server\Packet Generator\bin\netcoreapp3.1\Packet Generator.runtimeconfig.dev.json
+D:\Users\Project\Sample Server\Packet Generator\bin\netcoreapp3.1\Packet Generator.dll
+D:\Users\Project\Sample Server\Packet Generator\bin\netcoreapp3.1\Packet Generator.pdb
