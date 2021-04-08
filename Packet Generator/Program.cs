@@ -7,6 +7,8 @@ namespace Packet_Generator
     class Program
     {
         static string genPackets;
+        static ushort packetId = 0;
+        static string packetEnums;
         static void Main(string[] args)
         {
             XmlReaderSettings settings = new XmlReaderSettings()
@@ -24,8 +26,8 @@ namespace Packet_Generator
                     if (r.Depth == 1 && r.NodeType == XmlNodeType.Element) ParsePacket(r);
                 }
 
-                // 
-                File.WriteAllText("GenPackets.cs", genPackets);
+                string fileText = string.Format(PacketFormat.fileFormat, packetEnums, genPackets);
+                File.WriteAllText("GenPackets.cs", fileText);
             }            
         }
 
@@ -42,7 +44,11 @@ namespace Packet_Generator
             }
 
             Tuple<string, string, string> t = ParseMembers(r);
-            if (t != null) genPackets += string.Format(PacketFormat.packetFormat, packetName, t.Item1, t.Item2, t.Item3);
+            if (t != null)
+            {
+                genPackets += string.Format(PacketFormat.packetFormat, packetName, t.Item1, t.Item2, t.Item3);
+                packetEnums += string.Format(PacketFormat.packetEnumFormat, packetName, packetId++) + "\n\t";
+            }
         }
 
         public static Tuple<string, string, string> ParseMembers(XmlReader r)
@@ -82,7 +88,13 @@ namespace Packet_Generator
                 switch (memberType)
                 {
                     case "bool":
+                        break;
                     case "byte":
+                    case "sbyte":
+                        memberCode += string.Format(PacketFormat.memberFormat, memberType, memberName);
+                        readCode += string.Format(PacketFormat.readByteFormat, memberName, memberType);
+                        writeCode += string.Format(PacketFormat.writeByteFormat, memberName, memberType);
+                        break;
                     case "short":
                     case "ushort":
                     case "int":
