@@ -14,13 +14,13 @@ namespace Dummy_Client
 
             try
             {
-                PlayerInfoReq packet = new PlayerInfoReq() { playerId = 1001, name = "ABCD"};
-				var skill = new PlayerInfoReq.Skill() { id = 0, level = 1, duration = 1.1f };
-				skill.attrubutes.Add(new PlayerInfoReq.Skill.Attrubute() { attName = 53 });
+                C_PlayerInfoReq packet = new C_PlayerInfoReq() { playerId = 1001, name = "ABCD"};
+				var skill = new C_PlayerInfoReq.Skill() { id = 0, level = 1, duration = 1.1f };
+				skill.attrubutes.Add(new C_PlayerInfoReq.Skill.Attrubute() { attName = 53 });
                 packet.skills.Add(skill);
-                packet.skills.Add(new PlayerInfoReq.Skill() { id = 2, level = 5, duration = 3.0f });
-                packet.skills.Add(new PlayerInfoReq.Skill() { id = 3, level = 7, duration = 7.5f });
-                packet.skills.Add(new PlayerInfoReq.Skill() { id = 4, level = 2, duration = 1.0f });
+                packet.skills.Add(new C_PlayerInfoReq.Skill() { id = 2, level = 5, duration = 3.0f });
+                packet.skills.Add(new C_PlayerInfoReq.Skill() { id = 3, level = 7, duration = 7.5f });
+                packet.skills.Add(new C_PlayerInfoReq.Skill() { id = 4, level = 2, duration = 1.0f });
                 //for (int i = 0; i < 5; i++)
                 {
                     ArraySegment<byte> sendBuff = packet.Write();

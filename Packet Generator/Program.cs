@@ -9,6 +9,9 @@ namespace Packet_Generator
         static string genPackets;
         static ushort packetId = 0;
         static string packetEnums;
+
+        static string clientRegister;
+        static string serverRegister;
         static void Main(string[] args)
         {
             string pdlPath = "../PDL.xml";
@@ -24,7 +27,7 @@ namespace Packet_Generator
             using (XmlReader r = XmlReader.Create(pdlPath, settings))
             {
                 r.MoveToContent();
-                while(r.Read())
+                while (r.Read())
                 {
                     // Depth가 1이고 정보가 시작될때 Parsing 진행
                     if (r.Depth == 1 && r.NodeType == XmlNodeType.Element) ParsePacket(r);
@@ -32,7 +35,11 @@ namespace Packet_Generator
 
                 string fileText = string.Format(PacketFormat.fileFormat, packetEnums, genPackets);
                 File.WriteAllText("GenPackets.cs", fileText);
-            }            
+                string clientManagerText = string.Format(PacketFormat.managerFormat, clientRegister);
+                File.WriteAllText("ClientPacketManager.cs", clientManagerText);
+                string serverManagerText = string.Format(PacketFormat.managerFormat, serverRegister);
+                File.WriteAllText("ServerPacketManager.cs", serverManagerText);
+            }
         }
 
         public static void ParsePacket(XmlReader r)
@@ -52,9 +59,12 @@ namespace Packet_Generator
             {
                 genPackets += string.Format(PacketFormat.packetFormat, packetName, t.Item1, t.Item2, t.Item3);
                 packetEnums += string.Format(PacketFormat.packetEnumFormat, packetName, packetId++) + "\n\t";
+                if (packetName[0].ToString().ToUpper() == "C")
+                    serverRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + "\n";
+                else
+                    clientRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + "\n";
             }
         }
-
         public static Tuple<string, string, string> ParseMembers(XmlReader r)
         {
             string packetName = r["name"];
@@ -102,8 +112,8 @@ namespace Packet_Generator
                     case "short":
                     case "ushort":
                     case "int":
-                    case "long": 
-                    case "float": 
+                    case "long":
+                    case "float":
                     case "double":
                         memberCode += string.Format(PacketFormat.memberFormat, memberType, memberName);
                         readCode += string.Format(PacketFormat.readFormat, memberName, ToMemberType(memberType), memberType);
@@ -139,7 +149,7 @@ namespace Packet_Generator
                 return null;
             }
 
-            Tuple<string,string,string> t = ParseMembers(r);
+            Tuple<string, string, string> t = ParseMembers(r);
 
             string memberCode = string.Format(PacketFormat.memberListFormat, FirstCharToUpper(listName), FirstCharToLower(listName), t.Item1, t.Item2, t.Item3);
             string readCode = string.Format(PacketFormat.listReadFormat, FirstCharToUpper(listName), FirstCharToLower(listName));
