@@ -19,6 +19,15 @@ namespace Dummy_Client
             public ushort level;
             public float duration;
 
+            public void Read(ReadOnlySpan<byte> s, ref ushort count)
+            {
+                id = BitConverter.ToInt32(s.Slice(count, s.Length - count));
+                count += sizeof(int);
+                level = BitConverter.ToUInt16(s.Slice(count, s.Length - count));
+                count += sizeof(ushort);
+                duration = BitConverter.ToSingle(s.Slice(count, s.Length - count));
+                count += sizeof(float);
+            }
             public bool Write(Span<byte> s, ref ushort count)
             {
                 bool success = true;
@@ -30,19 +39,7 @@ namespace Dummy_Client
                 count += sizeof(float);
                 return success;
             }
-
-            public void Read(ReadOnlySpan<byte> s, ref ushort count)
-            {
-                id = BitConverter.ToInt32(s.Slice(count, s.Length - count));
-                count += sizeof(int);
-                level = BitConverter.ToUInt16(s.Slice(count, s.Length - count));
-                count += sizeof(ushort);
-                duration = BitConverter.ToSingle(s.Slice(count, s.Length - count));
-                count += sizeof(float);
-
-            }
         }
-
         public List<SkillInfo> skills = new List<SkillInfo>();
         public void Read(ArraySegment<byte> segment)
         {
@@ -111,9 +108,7 @@ namespace Dummy_Client
             success &= BitConverter.TryWriteBytes(s.Slice(count, s.Length - count), (ushort)skills.Count);
             count += sizeof(ushort);
             foreach(SkillInfo skill in skills)
-            {
                 success &= skill.Write(s, ref count);
-            }
 
             success &= BitConverter.TryWriteBytes(s, count);
 

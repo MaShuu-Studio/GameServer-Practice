@@ -10,3 +10,4 @@ D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet
 D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet Generator.dll
 D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet Generator.pdb
 D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet Generator.genruntimeconfig.cache
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\netcoreapp3.1\Packet Generator.csprojAssemblyReference.cache
