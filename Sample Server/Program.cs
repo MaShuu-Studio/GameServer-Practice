@@ -16,6 +16,8 @@ namespace Sample_Server
 
         static void Main(string[] args)
         {
+            PacketManager.Instance.Register(); // 싱글쓰레드에서 첫 발동만 해야함
+
             // DNS 활용
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
