@@ -5,22 +5,20 @@ using System.Collections.Generic;
 
 class PacketManager
 {
-    static PacketManager instance;
-    public static PacketManager Instance
+    static PacketManager instance = new PacketManager();
+    public static PacketManager Instance { get { return instance; } }
+
+    PacketManager()
     {
-        get
-        {
-            if (instance == null) instance = new PacketManager();
-            return instance;
-        }
+        Register();
     }
 
     Dictionary<ushort, Action<PacketSession, ArraySegment<byte>>> onRecv = new Dictionary<ushort, Action<PacketSession, ArraySegment<byte>>>();
     Dictionary<ushort, Action<PacketSession, IPacket>> handler = new Dictionary<ushort, Action<PacketSession, IPacket>>();
     public void Register()
     {
-        onRecv.Add((ushort)PacketID.C_PlayerInfoReq, MakePacket<C_PlayerInfoReq>);
-        handler.Add((ushort)PacketID.C_PlayerInfoReq, PacketHandler.C_PlayerInfoReqHandler);
+        onRecv.Add((ushort)PacketID.C_Chat, MakePacket<C_Chat>);
+        handler.Add((ushort)PacketID.C_Chat, PacketHandler.C_ChatHandler);
 
     }
 

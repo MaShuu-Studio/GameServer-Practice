@@ -15,14 +15,12 @@ using System.Collections.Generic;
 
 class PacketManager
 {{
-    static PacketManager instance;
-    public static PacketManager Instance
+    static PacketManager instance = new PacketManager();
+    public static PacketManager Instance {{ get {{ return instance; }} }}
+
+    PacketManager()
     {{
-        get
-        {{
-            if (instance == null) instance = new PacketManager();
-            return instance;
-        }}
+        Register();
     }}
 
     Dictionary<ushort, Action<PacketSession, ArraySegment<byte>>> onRecv = new Dictionary<ushort, Action<PacketSession, ArraySegment<byte>>>();

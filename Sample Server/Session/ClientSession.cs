@@ -1,0 +1,45 @@
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.Net;
+using System.Text;
+using Sample_Server_Core;
+using System.Collections.Generic;
+
+namespace Sample_Server
+{       
+    class ClientSession : PacketSession
+    {
+        public int SessionId { get; set; }
+        public GameRoom Room { get; set; }
+        public override void OnConnected(EndPoint endPoint)
+        {
+            Console.WriteLine($"[System] OnConnected : {endPoint}");
+
+            Program.Room.Enter(this);
+        }
+
+        public override void OnRecvPacket(ArraySegment<byte> buffer)
+        {
+            PacketManager.Instance.OnRecvPacket(this, buffer);
+        }
+
+        public override void OnDisconnected(EndPoint endPoint)
+        {
+            Console.WriteLine($"[System] OnDisconnected : {endPoint}");
+
+            if (Room != null)
+            {
+                Room.Leave(this);
+                Room = null; 
+            }
+        }
+
+        public override void OnSend(int numOfBytes)
+        {
+            Console.WriteLine($"[System] Transferred bytes: {numOfBytes}");
+        }
+
+    }
+}
