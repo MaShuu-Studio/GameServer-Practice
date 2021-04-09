@@ -13,8 +13,6 @@ namespace Packet_Generator
         static string clientRegister;
         static string serverRegister;
 
-        static string clientHandler;
-        static string serverHandler;
         static void Main(string[] args)
         {
             string pdlPath = "../PDL.xml";
@@ -42,10 +40,6 @@ namespace Packet_Generator
                 File.WriteAllText("ClientPacketManager.cs", clientManagerText);
                 string serverManagerText = string.Format(PacketFormat.managerFormat, serverRegister);
                 File.WriteAllText("ServerPacketManager.cs", serverManagerText);
-                string clientHandlerText = string.Format(PacketFormat.handlerFormat, clientHandler);
-                File.WriteAllText("ClientPacketHandler.cs", clientHandlerText);
-                string serverHandlerText = string.Format(PacketFormat.handlerFormat, serverHandler);
-                File.WriteAllText("ServerPacketHandler.cs", serverHandlerText);
             }
         }
 
@@ -69,12 +63,10 @@ namespace Packet_Generator
                 if (packetName[0].ToString().ToUpper() == "C")
                 {
                     serverRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + "\n";
-                    serverHandler += string.Format(PacketFormat.handlerRegisterFormat, packetName) + "\n";
                 }
                 else
                 { 
                     clientRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + "\n";
-                    clientHandler += string.Format(PacketFormat.handlerRegisterFormat, packetName) + "\n";
                 }
 
             }
