@@ -17,7 +17,7 @@ namespace Sample_Server
         {
             Console.WriteLine($"[System] OnConnected : {endPoint}");
 
-            Program.Room.Enter(this);
+            Program.Room.Push(() => Program.Room.Enter(this));
         }
 
         public override void OnRecvPacket(ArraySegment<byte> buffer)
@@ -31,14 +31,16 @@ namespace Sample_Server
 
             if (Room != null)
             {
-                Room.Leave(this);
-                Room = null; 
+                // 실행 순서가 Queue에 쌓임에 따라 Room을 직접 찾아가는 행위는 문제가 될 수 있음.
+                GameRoom room = Room;
+                room.Push(() => room.Leave(this));
+                Room = null;
             }
         }
 
         public override void OnSend(int numOfBytes)
         {
-            Console.WriteLine($"[System] Transferred bytes: {numOfBytes}");
+            //Console.WriteLine($"[System] Transferred bytes: {numOfBytes}");
         }
 
     }

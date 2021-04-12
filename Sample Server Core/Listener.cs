@@ -11,7 +11,7 @@ namespace Sample_Server_Core
         Socket _listenSocket;
         Func<Session> _sessionFactory;
 
-        public void init(IPEndPoint endPoint, Func<Session> sessionFactory)
+        public void init(IPEndPoint endPoint, Func<Session> sessionFactory, int register = 10, int backlog = 100)
         {
             // 리스너 생성
             _listenSocket = new Socket(endPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -21,12 +21,12 @@ namespace Sample_Server_Core
             _listenSocket.Bind(endPoint);
 
             // 리스너 리슨 - 최대 대기자 수 설정
-            _listenSocket.Listen(10);
+            _listenSocket.Listen(backlog);
 
             // 초기화 하면서 등록. 요청이 들어오면 Callback 방식으로 OnAccpetCompleted 작동.
             // RegisterAccept를 실행했을 때 바로 요청이 들어왔다면 pending이 false가 되어 작동
             // 그게 아니라면 pending == false 부분은 넘어가겠지만 후에 Callback으로 Completed에 넣어둔 OnAcceptCompleted 작동\
-            for (int i = 0; i < 5; i++) // 다수의 리스너 사용
+            for (int i = 0; i < register; i++) // 다수의 리스너 사용
             {
                 SocketAsyncEventArgs args = new SocketAsyncEventArgs();
                 args.Completed += new EventHandler<SocketAsyncEventArgs>(OnAcceptCompleted);
