@@ -28,7 +28,8 @@ namespace Sample_Server
 
             while (true)
             {
-
+                Thread.Sleep(5);
+                Room.Push(() => Room.Flush());
             }
         }
     }

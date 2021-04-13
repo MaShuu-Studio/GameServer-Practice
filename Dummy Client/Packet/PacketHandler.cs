@@ -14,6 +14,6 @@ class PacketHandler
         ServerSession serverSession = session as ServerSession;
 
         //if (chatPacket.playerId == 1)
-            Console.WriteLine(chatPacket.chat);
+           //Console.WriteLine(chatPacket.chat);
     }
 }

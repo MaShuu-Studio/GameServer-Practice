@@ -15,6 +15,7 @@ namespace Sample_Server_Core
         public sealed override int OnRecv(ArraySegment<byte> buffer)
         {
             int processLen = 0;
+            int packetCount = 0;
 
             while (true)
             {
@@ -27,10 +28,12 @@ namespace Sample_Server_Core
 
                 // 패킷이 일단 전부 도착한 것.
                 OnRecvPacket(new ArraySegment<byte>(buffer.Array, buffer.Offset, dataSize));
+                packetCount++;
 
                 processLen += dataSize; // 현재 패킷은 도착했으니 처리 진행. 버퍼도 도착한만큼 이동
                 buffer = new ArraySegment<byte>(buffer.Array, buffer.Offset + dataSize, buffer.Count - dataSize);
             }
+            if (packetCount > 1) Console.WriteLine($"PacketCount : {packetCount}");
             return processLen;
         }
 
@@ -43,7 +46,7 @@ namespace Sample_Server_Core
         Socket _socket;
         int _disconnect = 0;
 
-        RecvBuffer _recvBuffer = new RecvBuffer(1024);
+        RecvBuffer _recvBuffer = new RecvBuffer(65535);
 
         SocketAsyncEventArgs _recvArgs = new SocketAsyncEventArgs();
 
@@ -74,6 +77,23 @@ namespace Sample_Server_Core
             _sendArgs.Completed += new EventHandler<SocketAsyncEventArgs>(OnSendCompleted);
 
             RegisterRecv();
+        }
+
+        public void Send(List<ArraySegment<byte>> sendBuffs)
+        {
+            //_socket.Send(sendBuff);
+            // 보낼 때 등록
+            //_sendArgs.SetBuffer(sendBuff, 0, sendBuff.Length); // 종료가 되지 않았는데 버퍼가 채워질 수 있음.
+
+            if (sendBuffs.Count == 0) return;
+
+            lock (_lock)
+            {
+                foreach (ArraySegment<byte> sendBuff in sendBuffs)
+                    _sendQueue.Enqueue(sendBuff);
+                if (_pendingList.Count == 0)
+                    RegisterSend();
+            }
         }
 
         public void Send(ArraySegment<byte> sendBuff)

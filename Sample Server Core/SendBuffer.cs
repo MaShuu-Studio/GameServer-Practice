@@ -12,7 +12,7 @@ namespace Sample_Server_Core
         // 이 후는 읽기만 하기 때문에 멀티쓰레드 문제 X
         public static ThreadLocal<SendBuffer> CurrentBuffer = new ThreadLocal<SendBuffer>(() => { return null; });
 
-        public static int ChunkSize { get; set; } = 4096 * 100;
+        public static int ChunkSize { get; set; } = 65535 * 100;
 
         public static ArraySegment<byte> Open(int reserveSize)
         {
