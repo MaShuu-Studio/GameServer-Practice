@@ -15,6 +15,12 @@ namespace Sample_Server
         static Listener _listener = new Listener();
         public static GameRoom Room = new GameRoom();
 
+        static void FlushRoom()
+        {
+            Room.Push(() => Room.Flush());
+            JobTimer.Instance.Push(FlushRoom, 5);
+        }
+
         static void Main(string[] args)
         {
             // DNS 활용
@@ -26,10 +32,10 @@ namespace Sample_Server
             _listener.init(endPoint, () => { return SessionManager.Instance.Generate(); });
             Console.WriteLine("Listening...");
 
+            FlushRoom();
             while (true)
             {
-                Thread.Sleep(5);
-                Room.Push(() => Room.Flush());
+                JobTimer.Instance.Flush();
             }
         }
     }
