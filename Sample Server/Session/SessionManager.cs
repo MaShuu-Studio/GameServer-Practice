@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sample_Server
+namespace SampleServer
 {
     class SessionManager
     {

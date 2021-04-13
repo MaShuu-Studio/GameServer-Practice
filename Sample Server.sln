@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample Server", "Sample Server\Sample Server.csproj", "{D4A2F7C0-7798-4C28-9104-8B2FFA36D0EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleServer", "Sample Server\SampleServer.csproj", "{D4A2F7C0-7798-4C28-9104-8B2FFA36D0EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample Server Core", "Sample Server Core\Sample Server Core.csproj", "{E4DBF635-3FF0-48BB-932C-72F59D791A36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerCore", "Sample Server Core\ServerCore.csproj", "{E4DBF635-3FF0-48BB-932C-72F59D791A36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dummy Client", "Dummy Client\Dummy Client.csproj", "{05F0ACDB-8D46-446A-88CA-70C520F37BEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DummyClient", "Dummy Client\DummyClient.csproj", "{05F0ACDB-8D46-446A-88CA-70C520F37BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packet Generator", "Packet Generator\Packet Generator.csproj", "{11ADA706-7682-4990-990C-E346A3C2BC9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacketGenerator", "Packet Generator\PacketGenerator.csproj", "{11ADA706-7682-4990-990C-E346A3C2BC9F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{D4204722-C35E-4098-B67C-0EA2182CA07F}"
 EndProject

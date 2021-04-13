@@ -2,28 +2,28 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Sample Server Core/1.0.0": {
+      "ServerCore/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
-          "bin/placeholder/Sample Server Core.dll": {}
+          "bin/placeholder/ServerCore.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Sample Server Core.dll": {}
+          "bin/placeholder/ServerCore.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "Sample Server Core/1.0.0": {
+    "ServerCore/1.0.0": {
       "type": "project",
-      "path": "../Sample Server Core/Sample Server Core.csproj",
-      "msbuildProject": "../Sample Server Core/Sample Server Core.csproj"
+      "path": "../Sample Server Core/ServerCore.csproj",
+      "msbuildProject": "../Sample Server Core/ServerCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Sample Server Core >= 1.0.0"
+      "ServerCore >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -33,9 +33,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\Project\\Sample Server\\Sample Server\\Sample Server.csproj",
-      "projectName": "Sample Server",
-      "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server\\Sample Server.csproj",
+      "projectUniqueName": "D:\\Users\\Project\\Sample Server\\Sample Server\\SampleServer.csproj",
+      "projectName": "SampleServer",
+      "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server\\SampleServer.csproj",
       "packagesPath": "C:\\Users\\ghwls\\.nuget\\packages\\",
       "outputPath": "D:\\Users\\Project\\Sample Server\\Sample Server\\obj\\",
       "projectStyle": "PackageReference",
@@ -57,8 +57,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Users\\Project\\Sample Server\\Sample Server Core\\Sample Server Core.csproj": {
-              "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\Sample Server Core.csproj"
+            "D:\\Users\\Project\\Sample Server\\Sample Server Core\\ServerCore.csproj": {
+              "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\ServerCore.csproj"
             }
           }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dummy_Client
+namespace DummyClient
 {
     // 실제 프로젝트에서는 필요X 
     class SessionManager

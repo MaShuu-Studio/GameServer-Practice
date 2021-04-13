@@ -1,5 +1,5 @@
-using Dummy_Client;
-using Sample_Server_Core;
+using DummyClient;
+using ServerCore;
 using System;
 using System.Collections.Generic;
 using System.Text;

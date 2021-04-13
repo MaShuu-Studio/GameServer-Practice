@@ -1,0 +1,16 @@
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\DummyClient.exe
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\DummyClient.deps.json
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\DummyClient.runtimeconfig.json
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\DummyClient.runtimeconfig.dev.json
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\DummyClient.dll
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\DummyClient.pdb
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\ServerCore.dll
+D:\Users\Project\Sample Server\Dummy Client\bin\Release\netcoreapp3.1\ServerCore.pdb
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.csprojAssemblyReference.cache
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.AssemblyInfoInputs.cache
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.AssemblyInfo.cs
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.csproj.CoreCompileInputs.cache
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.csproj.CopyComplete
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.dll
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.pdb
+D:\Users\Project\Sample Server\Dummy Client\obj\Release\netcoreapp3.1\DummyClient.genruntimeconfig.cache

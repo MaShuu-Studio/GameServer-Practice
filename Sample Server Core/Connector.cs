@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace Sample_Server_Core
+namespace ServerCore
 {
     public class Connector
     {

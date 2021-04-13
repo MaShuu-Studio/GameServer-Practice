@@ -1,5 +1,5 @@
 
-using Sample_Server_Core;
+using ServerCore;
 using System;
 using System.Collections.Generic;
 

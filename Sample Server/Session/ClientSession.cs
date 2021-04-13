@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
-using Sample_Server_Core;
+using ServerCore;
 using System.Collections.Generic;
 
-namespace Sample_Server
+namespace SampleServer
 {       
     class ClientSession : PacketSession
     {

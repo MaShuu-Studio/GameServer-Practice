@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\Project\\Sample Server\\Packet Generator\\Packet Generator.csproj",
-      "projectName": "Packet Generator",
-      "projectPath": "D:\\Users\\Project\\Sample Server\\Packet Generator\\Packet Generator.csproj",
+      "projectUniqueName": "D:\\Users\\Project\\Sample Server\\Packet Generator\\PacketGenerator.csproj",
+      "projectName": "PacketGenerator",
+      "projectPath": "D:\\Users\\Project\\Sample Server\\Packet Generator\\PacketGenerator.csproj",
       "packagesPath": "C:\\Users\\ghwls\\.nuget\\packages\\",
       "outputPath": "D:\\Users\\Project\\Sample Server\\Packet Generator\\obj\\",
       "projectStyle": "PackageReference",

@@ -4,8 +4,6 @@ D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\Sample Se
 D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\Sample Server.runtimeconfig.dev.json
 D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\Sample Server.dll
 D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\Sample Server.pdb
-D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\Sample Server Core.dll
-D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\Sample Server Core.pdb
 D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\Sample Server.csprojAssemblyReference.cache
 D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\Sample Server.AssemblyInfoInputs.cache
 D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\Sample Server.AssemblyInfo.cs
@@ -14,3 +12,5 @@ D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\Sample Se
 D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\Sample Server.dll
 D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\Sample Server.pdb
 D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\Sample Server.genruntimeconfig.cache
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\ServerCore.dll
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\ServerCore.pdb

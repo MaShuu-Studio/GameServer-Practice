@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
-using Sample_Server_Core;
+using ServerCore;
 
-namespace Sample_Server
+namespace SampleServer
 {
     class Program
     {

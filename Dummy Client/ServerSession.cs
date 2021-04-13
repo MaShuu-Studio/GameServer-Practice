@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Sample_Server_Core;
+using ServerCore;
 
-namespace Dummy_Client
+namespace DummyClient
 {
     class ServerSession : PacketSession
     {

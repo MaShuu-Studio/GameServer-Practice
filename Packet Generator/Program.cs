@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml;
 
-namespace Packet_Generator
+namespace PacketGenerator
 {
     class Program
     {
@@ -59,14 +59,14 @@ namespace Packet_Generator
             if (t != null)
             {
                 genPackets += string.Format(PacketFormat.packetFormat, packetName, t.Item1, t.Item2, t.Item3);
-                packetEnums += string.Format(PacketFormat.packetEnumFormat, packetName, packetId++) + "\n\t";
+                packetEnums += string.Format(PacketFormat.packetEnumFormat, packetName, packetId++) + Environment.NewLine + "\t";
                 if (packetName[0].ToString().ToUpper() == "C")
                 {
-                    serverRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + "\n";
+                    serverRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + Environment.NewLine;
                 }
                 else
                 { 
-                    clientRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + "\n";
+                    clientRegister += string.Format(PacketFormat.managerRegisterFormat, packetName) + Environment.NewLine;
                 }
 
             }
@@ -139,9 +139,9 @@ namespace Packet_Generator
                 }
             }
 
-            memberCode = memberCode.Replace("\n", "\n\t");
-            readCode = readCode.Replace("\n", "\n\t\t");
-            writeCode = writeCode.Replace("\n", "\n\t\t");
+            memberCode = memberCode.Replace(Environment.NewLine, Environment.NewLine + "\t");
+            readCode = readCode.Replace(Environment.NewLine, Environment.NewLine + "\t\t");
+            writeCode = writeCode.Replace(Environment.NewLine, Environment.NewLine + "\t\t");
             return new Tuple<string, string, string>(memberCode, readCode, writeCode);
         }
 

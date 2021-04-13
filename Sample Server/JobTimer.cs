@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using Sample_Server_Core;
+using ServerCore;
 
-namespace Sample_Server
+namespace SampleServer
 {
     struct JobTimerElem : IComparable<JobTimerElem>
     {

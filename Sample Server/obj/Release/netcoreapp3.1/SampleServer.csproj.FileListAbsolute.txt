@@ -1,0 +1,16 @@
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.csprojAssemblyReference.cache
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.AssemblyInfoInputs.cache
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.AssemblyInfo.cs
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.csproj.CoreCompileInputs.cache
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\SampleServer.exe
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\SampleServer.deps.json
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\SampleServer.runtimeconfig.json
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\SampleServer.runtimeconfig.dev.json
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\SampleServer.dll
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\SampleServer.pdb
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\ServerCore.dll
+D:\Users\Project\Sample Server\Sample Server\bin\Release\netcoreapp3.1\ServerCore.pdb
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.csproj.CopyComplete
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.dll
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.pdb
+D:\Users\Project\Sample Server\Sample Server\obj\Release\netcoreapp3.1\SampleServer.genruntimeconfig.cache

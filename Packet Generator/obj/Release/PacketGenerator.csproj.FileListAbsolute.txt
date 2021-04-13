@@ -1,0 +1,13 @@
+D:\Users\Project\Sample Server\Packet Generator\bin\PacketGenerator.exe
+D:\Users\Project\Sample Server\Packet Generator\bin\PacketGenerator.deps.json
+D:\Users\Project\Sample Server\Packet Generator\bin\PacketGenerator.runtimeconfig.json
+D:\Users\Project\Sample Server\Packet Generator\bin\PacketGenerator.runtimeconfig.dev.json
+D:\Users\Project\Sample Server\Packet Generator\bin\PacketGenerator.dll
+D:\Users\Project\Sample Server\Packet Generator\bin\PacketGenerator.pdb
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\PacketGenerator.AssemblyInfoInputs.cache
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\PacketGenerator.AssemblyInfo.cs
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\PacketGenerator.csproj.CoreCompileInputs.cache
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\PacketGenerator.dll
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\PacketGenerator.pdb
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\PacketGenerator.genruntimeconfig.cache
+D:\Users\Project\Sample Server\Packet Generator\obj\Release\PacketGenerator.csprojAssemblyReference.cache

@@ -3,9 +3,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using Sample_Server_Core;
+using ServerCore;
 
-namespace Dummy_Client
+namespace DummyClient
 {
     class Program
     {
@@ -33,7 +33,7 @@ namespace Dummy_Client
                     Console.WriteLine("[Error]" + e.ToString());
                 }
 
-                Thread.Sleep(5);
+                Thread.Sleep(100);
             }
         }
     }

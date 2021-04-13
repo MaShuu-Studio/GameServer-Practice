@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sample_Server_Core;
+using ServerCore;
 
-namespace Sample_Server
+namespace SampleServer
 {
     class GameRoom : IJobQueue
     {

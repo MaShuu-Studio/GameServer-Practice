@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Sample_Server_Core
+namespace ServerCore
 {
     public class SendBufferHelper
     {

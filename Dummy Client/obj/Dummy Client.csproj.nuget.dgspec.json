@@ -31,8 +31,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Users\\Project\\Sample Server\\Sample Server Core\\Sample Server Core.csproj": {
-                "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\Sample Server Core.csproj"
+              "D:\\Users\\Project\\Sample Server\\Sample Server Core\\ServerCore.csproj": {
+                "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\ServerCore.csproj"
               }
             }
           }
@@ -65,12 +65,12 @@
         }
       }
     },
-    "D:\\Users\\Project\\Sample Server\\Sample Server Core\\Sample Server Core.csproj": {
+    "D:\\Users\\Project\\Sample Server\\Sample Server Core\\ServerCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\Sample Server Core.csproj",
-        "projectName": "Sample Server Core",
-        "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\Sample Server Core.csproj",
+        "projectUniqueName": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\ServerCore.csproj",
+        "projectName": "ServerCore",
+        "projectPath": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\ServerCore.csproj",
         "packagesPath": "C:\\Users\\ghwls\\.nuget\\packages\\",
         "outputPath": "D:\\Users\\Project\\Sample Server\\Sample Server Core\\obj\\",
         "projectStyle": "PackageReference",
